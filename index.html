@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#fff1f5">
+  <meta name="description" content="A birthday surprise made with love for Racheal, my mi Corazon.">
+  <title>For Racheal, mi Corazon ❤️</title>
+  <style>
+    :root { --pink:#f28ab2; --deep:#9d315d; --cream:#fff8f5; --ink:#4c2435; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body {
+      margin:0; color:var(--ink); font-family: Georgia, "Times New Roman", serif;
+      background: radial-gradient(circle at 15% 10%, #ffe0eb 0, transparent 28%),
+                  radial-gradient(circle at 90% 35%, #f9d7e5 0, transparent 30%),
+                  linear-gradient(145deg,#fff8f5,#ffeaf1 55%,#fff6f2);
+      min-height:100vh; overflow-x:hidden;
+    }
+    button, input { font:inherit; }
+    button { cursor:pointer; -webkit-tap-highlight-color:transparent; }
+    .wrap { width:min(760px,100%); margin:0 auto; padding:22px 16px 48px; position:relative; z-index:1; }
+    .hero { min-height:88svh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; padding:32px 8px; }
+    .eyebrow { text-transform:uppercase; letter-spacing:.19em; font:700 11px/1.6 system-ui,sans-serif; color:var(--deep); }
+    h1 { font-size:clamp(42px,12vw,76px); line-height:.98; margin:18px 0 12px; font-weight:500; color:#a93665; }
+    .subtitle { font-size:clamp(18px,5vw,23px); line-height:1.5; max-width:520px; margin:0 auto 24px; }
+    .heart { color:#e44e86; display:inline-block; animation:beat 1.3s infinite; }
+    @keyframes beat { 0%,100%{transform:scale(1)} 15%{transform:scale(1.18)} 30%{transform:scale(1)} }
+    .btn { border:0; border-radius:999px; background:#b83d70; color:white; padding:14px 21px; box-shadow:0 8px 22px #a9366530; font:700 14px system-ui,sans-serif; }
+    .btn.secondary { background:#fff; color:#a93665; border:1px solid #f1bfd1; box-shadow:none; }
+    .btn:focus-visible, input:focus-visible { outline:3px solid #6f2b4a; outline-offset:3px; }
+    .music-row { display:flex; flex-wrap:wrap; gap:10px; justify-content:center; align-items:center; margin-top:14px; }
+    .music-status { font:12px system-ui,sans-serif; color:#8d536b; margin-top:9px; }
+    .panel { background:#ffffffc9; border:1px solid #fff; border-radius:24px; padding:24px 20px; margin:18px 0; box-shadow:0 14px 45px #9d315d0d; backdrop-filter:blur(6px); }
+    h2 { font-size:clamp(27px,7vw,38px); font-weight:500; text-align:center; color:#a93665; margin:4px 0 12px; }
+    .center { text-align:center; }
+    .hint { color:#8d536b; font:13px/1.6 system-ui,sans-serif; text-align:center; }
+    .letter { font-size:18px; line-height:1.85; white-space:pre-line; }
+    .hidden { display:none !important; }
+    .photo-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; margin-top:16px; }
+    .photo-slot { min-height:150px; border:1.5px dashed #e7a5bd; border-radius:16px; background:#fff7fa; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; overflow:hidden; padding:10px; color:#9d5572; font:13px/1.5 system-ui,sans-serif; }
+    .photo-slot img { width:100%; height:100%; min-height:150px; object-fit:cover; border-radius:12px; }
+    .photo-slot .symbol { font-size:29px; margin-bottom:6px; }
+    .upload-label { display:inline-flex; margin-top:15px; }
+    input[type=file] { display:none; }
+    .footer { text-align:center; padding:28px 10px 12px; font-size:16px; color:#9d5572; }
+    .floating-heart { position:fixed; bottom:-40px; z-index:0; pointer-events:none; opacity:0; animation:floatUp linear forwards; }
+    @keyframes floatUp { 0%{transform:translateY(0) rotate(0deg);opacity:0} 10%{opacity:.65} 90%{opacity:.55} 100%{transform:translateY(-110vh) rotate(30deg);opacity:0} }
+    .divider { text-align:center; color:#e47aa1; letter-spacing:.5em; margin:18px 0; }
+    .tiny { font:12px/1.6 system-ui,sans-serif; color:#956176; }
+    @media (min-width:600px) { .panel { padding:32px; } .photo-grid { grid-template-columns:repeat(3,minmax(0,1fr)); } }
+    @media (prefers-reduced-motion: reduce) { *,*::before,*::after { animation-duration:.01ms !important; scroll-behavior:auto !important; } }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="hero">
+      <div class="eyebrow">A little birthday surprise · 26 October 2026</div>
+      <h1>Happy Birthday,<br>Racheal <span class="heart">♥</span></h1>
+      <p class="subtitle">To my <em>mi Corazon</em> — a little piece of my heart, made just for you.</p>
+      <button class="btn" id="openTop">Open your surprise 💌</button>
+      <div class="music-row">
+        <button class="btn secondary" id="musicButton" aria-pressed="false">▶ Play our song</button>
+        <label class="btn secondary upload-label" for="songInput">＋ Add your song</label>
+        <input id="songInput" type="file" accept="audio/*">
+      </div>
+      <div id="musicStatus" class="music-status" aria-live="polite">Choose an audio file, then tap Play our song.</div>
+      <audio id="songPlayer" loop playsinline></audio>
+      <div class="divider">♥ · ♥ · ♥</div>
+      <p class="tiny">Made with love, especially for you.</p>
+    </section>
+
+    <section class="panel" id="letterPanel">
+      <div class="eyebrow center">Just for you</div>
+      <h2>A letter from my heart</h2>
+      <p class="hint">Tap the button to open your letter.</p>
+      <div class="center"><button class="btn" id="letterButton" aria-expanded="false">Open my heart ❤️</button></div>
+      <div id="letterText" class="letter hidden" style="margin-top:22px">Happy birthday, my mi Corazon. ❤️
+
+I wish I could be beside you today, see your smile up close, and give you the biggest hug. Since distance is keeping us apart, I made this little corner of the internet just for you.
+
+I hope this new year of your life brings you peace, laughter, good health, beautiful opportunities, and countless reasons to smile. I hope you always remember that you deserve kindness, joy, and all the lovely things life has to offer.
+
+Thank you for being the person you are. Today, I’m celebrating you — your heart, your smile, and the memories we’ve made. No matter how far apart we are, I’m sending you so much love.
+
+Happy birthday, Racheal. You’ll always be my mi Corazon. ❤️
+
+With love,
+Your person 💌</div>
+    </section>
+
+    <section class="panel">
+      <div class="eyebrow center">Our little gallery</div>
+      <h2>Beautiful memories 📸</h2>
+      <p class="hint">Add pictures from your iPhone. They appear here on this page; to include them in the published website for everyone to see, place the image files in the website's <code>assets</code> folder and update the filenames in the HTML (instructions included in README).</p>
+      <div class="photo-grid" id="photoGrid">
+        <div class="photo-slot"><span class="symbol">♡</span><strong>Our favourite moment</strong><span>Add a photo below</span></div>
+        <div class="photo-slot"><span class="symbol">🌷</span><strong>Your beautiful smile</strong><span>Add a photo below</span></div>
+        <div class="photo-slot"><span class="symbol">✨</span><strong>A memory to keep</strong><span>Add a photo below</span></div>
+      </div>
+      <div class="center"><label class="btn upload-label" for="photoInput">＋ Add pictures</label><input id="photoInput" type="file" accept="image/*" multiple></div>
+      <p class="hint" id="photoStatus" aria-live="polite">You can choose more than one picture.</p>
+    </section>
+
+    <section class="panel center">
+      <div class="eyebrow">One more thing</div>
+      <h2>Make a birthday wish ✨</h2>
+      <p class="letter" style="font-size:17px">Close your eyes for a moment, make a wish, and know that somewhere far away, someone is wishing beautiful things for you too.</p>
+      <button class="btn" id="wishButton">Send a little love 💗</button>
+      <p id="wishMessage" class="hidden">A thousand hugs are travelling your way, mi Corazon. 🫂❤️</p>
+    </section>
+    <footer class="footer">Forever cheering for you, Racheal. <span class="heart">♥</span><br><span class="tiny">A birthday surprise made with love.</span></footer>
+  </main>
+  <script>
+    const openTop = document.getElementById('openTop');
+    const letterPanel = document.getElementById('letterPanel');
+    const letterButton = document.getElementById('letterButton');
+    const letterText = document.getElementById('letterText');
+    const songInput = document.getElementById('songInput');
+    const songPlayer = document.getElementById('songPlayer');
+    const musicButton = document.getElementById('musicButton');
+    const musicStatus = document.getElementById('musicStatus');
+    let songUrl = null;
+
+    openTop.addEventListener('click', () => {
+      letterPanel.scrollIntoView({behavior:'smooth', block:'start'});
+      revealLetter();
+      burstHearts(14);
+    });
+    function revealLetter() {
+      letterText.classList.remove('hidden');
+      letterButton.textContent = 'Your letter is open 💗';
+      letterButton.setAttribute('aria-expanded','true');
+    }
+    letterButton.addEventListener('click', () => {
+      const opening = letterText.classList.contains('hidden');
+      letterText.classList.toggle('hidden');
+      letterButton.setAttribute('aria-expanded', String(opening));
+      letterButton.textContent = opening ? 'Close my letter 💗' : 'Open my heart ❤️';
+      if (opening) burstHearts(8);
+    });
+
+    songInput.addEventListener('change', () => {
+      const file = songInput.files && songInput.files[0];
+      if (!file) return;
+      if (songUrl) URL.revokeObjectURL(songUrl);
+      songUrl = URL.createObjectURL(file);
+      songPlayer.src = songUrl;
+      songPlayer.load();
+      musicStatus.textContent = 'Song ready: ' + file.name + '. Tap Play our song.';
+      musicButton.textContent = '▶ Play our song';
+      musicButton.setAttribute('aria-pressed','false');
+    });
+    musicButton.addEventListener('click', async () => {
+      if (!songPlayer.src) {
+        musicStatus.textContent = 'First tap “Add your song” and choose an audio file.';
+        songInput.click();
+        return;
+      }
+      if (songPlayer.paused) {
+        try {
+          await songPlayer.play();
+          musicButton.textContent = 'Ⅱ Pause our song';
+          musicButton.setAttribute('aria-pressed','true');
+          musicStatus.textContent = 'Now playing your song ❤️';
+        } catch (err) {
+          musicStatus.textContent = 'Safari could not play that file. Try choosing an MP3 or M4A audio file.';
+        }
+      } else {
+        songPlayer.pause();
+        musicButton.textContent = '▶ Play our song';
+        musicButton.setAttribute('aria-pressed','false');
+        musicStatus.textContent = 'Song paused.';
+      }
+    });
+    songPlayer.addEventListener('ended', () => {
+      musicButton.textContent = '▶ Play our song';
+      musicButton.setAttribute('aria-pressed','false');
+    });
+
+    const photoInput = document.getElementById('photoInput');
+    const photoGrid = document.getElementById('photoGrid');
+    const photoStatus = document.getElementById('photoStatus');
+    photoInput.addEventListener('change', () => {
+      const files = Array.from(photoInput.files || []).filter(f => f.type.startsWith('image/')).slice(0, 9);
+      if (!files.length) return;
+      photoGrid.innerHTML = '';
+      files.forEach((file, i) => {
+        const slot = document.createElement('div');
+        slot.className = 'photo-slot';
+        const img = document.createElement('img');
+        img.alt = 'Birthday memory ' + (i + 1);
+        img.src = URL.createObjectURL(file);
+        slot.appendChild(img);
+        photoGrid.appendChild(slot);
+      });
+      photoStatus.textContent = files.length + ' picture(s) added for this preview. For the published site, add them to the assets folder as described in README.';
+    });
+
+    document.getElementById('wishButton').addEventListener('click', () => {
+      document.getElementById('wishMessage').classList.remove('hidden');
+      burstHearts(24);
+    });
+    function burstHearts(count) {
+      const symbols = ['♥','♡','💗','💕'];
+      for (let i = 0; i < count; i++) {
+        const heart = document.createElement('span');
+        heart.className = 'floating-heart';
+        heart.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.fontSize = (14 + Math.random() * 22) + 'px';
+        heart.style.animationDuration = (4 + Math.random() * 4) + 's';
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 8500);
+      }
+    }
+    // Gentle ambient hearts; no audio starts without a user tap.
+    setInterval(() => {
+      if (document.visibilityState === 'visible') burstHearts(1);
+    }, 2200);
+  </script>
+</body>
+</html>
